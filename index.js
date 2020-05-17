@@ -31,13 +31,18 @@ const UserSchema = require("./models/User.js");
 
 const { MongooseAdapter: Adapter } = require("@keystonejs/adapter-mongoose");
 
-console.log(process.env.DATABASE_URL);
 const PROJECT_NAME = "resumaid-BE";
 const adapterConfig = {
   mongoUri: process.env.DATABASE_URL,
 };
 
 const keystone = new Keystone({
+  cookie: {
+    secure: process.env.NODE_ENV === "production", // Default to true in production
+    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
+    sameSite: false,
+  },
+  cookieSecret: process.env.COOKIE_SECRET,
   name: PROJECT_NAME,
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== "true" && initialiseData,
