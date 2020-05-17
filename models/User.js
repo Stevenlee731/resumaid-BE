@@ -4,7 +4,6 @@ const {
   Password,
   Relationship,
 } = require("@keystonejs/fields");
-const Module = require("./modules/Module");
 
 const userIsAdmin = ({ authentication: { item: user } }) =>
   Boolean(user && user.isAdmin);
@@ -12,7 +11,6 @@ const userOwnsItem = ({ authentication: { item: user } }) => {
   if (!user) {
     return false;
   }
-  console.log(user);
 
   // Instead of a boolean, you can return a GraphQL query:
   // https://www.keystonejs.com/api/access-control#graphqlwhere
