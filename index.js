@@ -49,13 +49,10 @@ const adapterConfig = {
   mongoUri: process.env.DATABASE_URL,
 };
 
+const cookieSecret = "7d0f1a11-ed7b-47a4-9929-551ac2ed3fbb";
+
 const keystone = new Keystone({
-  cookie: {
-    secure: process.env.NODE_ENV === "production", // Default to true in production
-    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
-    sameSite: false,
-  },
-  cookieSecret: process.env.COOKIE_SECRET,
+  cookieSecret,
   name: PROJECT_NAME,
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== "true" && initialiseData,
