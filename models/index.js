@@ -5,7 +5,7 @@ const ModuleList = require("./modules/ModuleList");
 const Module = require("./modules/Module");
 
 //awards
-const AwardSchema = require("./modules/awards/Award");
+const AwardSchema = require("./modules/Awards/Award");
 const AwardItemSchema = require("./modules/Awards/AwardItem");
 
 //basics
@@ -18,7 +18,7 @@ const EducationSchema = require("./modules/Education/Education");
 const EducationItemSchema = require("./modules/Education/EducationItem");
 
 //interests
-const InterestSchema = require("./modules/interests/Interest");
+const InterestSchema = require("./modules/Interests/Interest");
 const InterestItemSchema = require("./modules/Interests/InterestItem");
 
 //skills
@@ -32,7 +32,7 @@ const WorkItemSchema = require("./modules/Work/WorkItem");
 const HighlightSchema = require("./modules/Work/Highlight");
 
 //references
-const ReferenceSchema = require("./modules/references/Reference");
+const ReferenceSchema = require("./modules/References/Reference");
 const ReferenceItemSchema = require("./modules/References/ReferenceItem");
 
 module.exports = {
