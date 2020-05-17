@@ -1,10 +1,10 @@
 const { Text } = require("@keystonejs/fields");
 
-const InterestItem = {
+const ReferenceItem = {
   fields: {
     reference: { type: Text },
     name: { type: Text },
   },
 };
 
-module.exports = InterestItem;
+module.exports = ReferenceItem;

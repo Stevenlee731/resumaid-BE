@@ -1,16 +1,16 @@
 const { Relationship } = require("@keystonejs/fields");
-const Module = require("../Module");
+const Module = require("./Module");
 
-const Skills = {
+const Interest = {
   ...Module,
   fields: {
     ...Module.fields,
     content: {
       type: Relationship,
-      ref: "SkillItem",
+      ref: "InterestItem",
       many: true,
     },
   },
 };
 
-module.exports = Skills;
+module.exports = Interest;

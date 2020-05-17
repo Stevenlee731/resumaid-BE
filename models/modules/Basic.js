@@ -1,6 +1,6 @@
 const { Text, Relationship } = require("@keystonejs/fields");
 
-const Basics = {
+const Basic = {
   fields: {
     name: { type: Text },
     label: { type: Text },
@@ -23,4 +23,4 @@ const Basics = {
   },
 };
 
-module.exports = Basics;
+module.exports = Basic;

@@ -1,5 +1,5 @@
-const { Relationship, Integer, Text } = require("@keystonejs/fields");
-const Module = require("../Module");
+const { Relationship } = require("@keystonejs/fields");
+const Module = require("./Module");
 
 const Education = {
   ...Module,

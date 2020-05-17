@@ -5,29 +5,42 @@ const { PasswordAuthStrategy } = require("@keystonejs/auth-password");
 const { GraphQLApp } = require("@keystonejs/app-graphql");
 const { AdminUIApp } = require("@keystonejs/app-admin-ui");
 
-const {
-  BasicSchema,
-  LocationSchema,
-  SocialProfileSchema,
-  SkillItemSchema,
-  SkillSchema,
-  ReferenceItemSchema,
-  ReferenceSchema,
-  AwardItemSchema,
-  AwardSchema,
-  InterestItemSchema,
-  InterestSchema,
-  EducationItemSchema,
-  EducationSchema,
-  WorkItemSchema,
-  WorkSchema,
-  ModuleList,
-  KeywordSchema,
-  HighlightSchema,
-} = require("./models/index");
+//modules
+const ModuleList = require("./models/modules/ModuleList.js");
+
+//awards
+const Award = require("./models/modules/Award.js");
+const AwardItem = require("./models/modules/AwardItem.js");
+
+//basics
+const Basic = require("./models/modules/Basic.js");
+const Location = require("./models/modules/Location.js");
+const SocialProfile = require("./models/modules/SocialProfile.js");
+
+//education
+const Education = require("./models/modules/Education.js");
+const EducationItem = require("./models/modules/EducationItem.js");
+
+//interests
+const Interest = require("./models/modules/Interest");
+const InterestItem = require("./models/modules/InterestItem.js");
+
+//skills
+const Skill = require("./models/modules/Skills/Skill.js");
+const SkillItem = require("./models/modules/SkillItem.js");
+const Keyword = require("./models/modules/Keyword.js");
+
+//work
+const Work = require("./models/modules/Work/Work.js");
+const WorkItem = require("./models/modules/WorkItem.js");
+const Highlight = require("./models/modules/Highlight.js");
+
+//references
+const Reference = require("./models/modules/References/Reference.js");
+const ReferenceItem = require("./models/modules/ReferenceItem.js");
 
 const initialiseData = require("./initial-data");
-const UserSchema = require("./models/User.js");
+const User = require("./models/User.js");
 
 const { MongooseAdapter: Adapter } = require("@keystonejs/adapter-mongoose");
 
@@ -69,134 +82,29 @@ const userIsAdminOrOwner = (auth) => {
 
 const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
 
-keystone.createList("User", UserSchema);
+keystone.createList("User", User);
 keystone.createList("ModuleList", ModuleList);
-keystone.createList("Keyword", KeywordSchema);
-keystone.createList("Highlight", HighlightSchema);
-keystone.createList("AwardItem", AwardItemSchema);
-keystone.createList("Award", AwardSchema);
-keystone.createList("Basic", BasicSchema);
-keystone.createList("Location", LocationSchema);
-keystone.createList("SocialProfile", SocialProfileSchema);
-keystone.createList("SkillItem", SkillItemSchema);
-keystone.createList("Skill", SkillSchema);
-keystone.createList("ReferenceItem", ReferenceItemSchema);
-keystone.createList("Reference", ReferenceSchema);
-keystone.createList("InterestItem", InterestItemSchema);
-keystone.createList("Interest", InterestSchema);
-keystone.createList("EducationItem", EducationItemSchema);
-keystone.createList("Education", EducationSchema);
-keystone.createList("WorkItem", WorkItemSchema);
-keystone.createList("Work", WorkSchema);
+keystone.createList("Keyword", Keyword);
+keystone.createList("Highlight", Highlight);
+keystone.createList("AwardItem", AwardItem);
+keystone.createList("Award", Award);
+keystone.createList("Basic", Basic);
+keystone.createList("Location", Location);
+keystone.createList("SocialProfile", SocialProfile);
+keystone.createList("SkillItem", SkillItem);
+keystone.createList("Skill", Skill);
+keystone.createList("ReferenceItem", ReferenceItem);
+keystone.createList("Reference", Reference);
+keystone.createList("InterestItem", InterestItem);
+keystone.createList("Interest", Interest);
+keystone.createList("EducationItem", EducationItem);
+keystone.createList("Education", Education);
+keystone.createList("WorkItem", WorkItem);
+keystone.createList("Work", Work);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
   list: "User",
-});
-
-const findUser = async (parent, { name }, ctx, info, { query }) => {
-  const { data, error } = await query(
-    `
-  allUsers(where: { username: ${name} }) {
-    basics {
-      name
-      label
-      image
-      email
-      summary
-      website
-      profiles {
-        username
-        network
-      }
-      location {
-        city
-        countryCode
-      }
-    }
-    modules {
-      education {
-        module
-        slot
-        order
-        content {
-          endDate
-          startDate
-          area
-          studyType
-          institution
-        }
-      }
-      references {
-        module
-        slot
-        order
-        content {
-          reference
-          name
-        }
-      }
-      skills {
-        module
-        order
-        slot
-        content {
-          keywords {
-            keyword
-          }
-          level
-          name
-        }
-      }
-      awards {
-        order
-        slot
-        content {
-          title
-          awarder
-        }
-      }
-      work {
-        module
-        order
-        slot
-        content {
-          summary
-          website
-          company
-          pinned
-          location
-          position
-          startDate
-          highlights {
-            highlight
-          }
-        }
-      }
-      interests {
-        slot
-        order
-        module
-        content {
-          name
-        }
-      }
-    }
-  }
-  `,
-    { variables: name }
-  );
-
-  return data;
-};
-
-keystone.extendGraphQLSchema({
-  queries: [
-    {
-      schema: "findUser(name: String): User",
-      resolver: findUser,
-    },
-  ],
 });
 
 const apps = [

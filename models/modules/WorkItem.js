@@ -1,6 +1,6 @@
 const { Text, Checkbox, Relationship } = require("@keystonejs/fields");
 
-const InterestItem = {
+const WorkItem = {
   fields: {
     summary: { type: Text },
     website: { type: Text },
@@ -13,4 +13,4 @@ const InterestItem = {
   },
 };
 
-module.exports = InterestItem;
+module.exports = WorkItem;
