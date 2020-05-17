@@ -26,17 +26,17 @@ const Interest = require("./models/modules/Interest");
 const InterestItem = require("./models/modules/InterestItem.js");
 
 //skills
-const Skill = require("./models/modules/Skills/Skill.js");
+const Skill = require("./models/modules/Skill.js");
 const SkillItem = require("./models/modules/SkillItem.js");
 const Keyword = require("./models/modules/Keyword.js");
 
 //work
-const Work = require("./models/modules/Work/Work.js");
+const Work = require("./models/modules/Work.js");
 const WorkItem = require("./models/modules/WorkItem.js");
 const Highlight = require("./models/modules/Highlight.js");
 
 //references
-const Reference = require("./models/modules/References/Reference.js");
+const Reference = require("./models/modules/Reference.js");
 const ReferenceItem = require("./models/modules/ReferenceItem.js");
 
 const initialiseData = require("./initial-data");
