@@ -113,7 +113,7 @@ const apps = [
   }),
   new AdminUIApp({
     enableDefaultRoute: true,
-    authStrategy,
+    // authStrategy,
   }),
 ];
 
