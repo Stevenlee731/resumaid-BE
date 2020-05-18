@@ -106,11 +106,7 @@ const authStrategy = keystone.createAuthStrategy({
 });
 
 const apps = [
-  new GraphQLApp({
-    apollo: {
-      validationRules: [validation.depthLimit(3)],
-    },
-  }),
+  new GraphQLApp(),
   new AdminUIApp({
     enableDefaultRoute: true,
     // authStrategy,

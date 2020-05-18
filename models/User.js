@@ -61,13 +61,13 @@ const User = {
     },
   },
   // List-level access controls
-  access: {
-    read: true,
-    update: access.userIsAdminOrOwner,
-    create: true,
-    delete: access.userIsAdmin,
-    auth: true,
-  },
+  // access: {
+  //   read: true,
+  //   update: access.userIsAdminOrOwner,
+  //   create: true,
+  //   delete: access.userIsAdmin,
+  //   auth: true,
+  // },
 };
 
 module.exports = User;
