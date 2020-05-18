@@ -14,10 +14,12 @@ const userOwnsItem = ({ authentication: { item: user } }) => {
 
   // Instead of a boolean, you can return a GraphQL query:
   // https://www.keystonejs.com/api/access-control#graphqlwhere
+
   return { id: user.id };
 };
 
 const userIsAdminOrOwner = (auth) => {
+  console.log(auth, "auth");
   const isAdmin = access.userIsAdmin(auth);
   const isOwner = access.userOwnsItem(auth);
   return isAdmin ? isAdmin : isOwner;
@@ -62,7 +64,7 @@ const User = {
   access: {
     read: true,
     update: access.userIsAdminOrOwner,
-    create: access.userIsAdmin,
+    create: true,
     delete: access.userIsAdmin,
     auth: true,
   },

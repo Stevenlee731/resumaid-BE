@@ -4,6 +4,7 @@ const { Keystone } = require("@keystonejs/keystone");
 const { PasswordAuthStrategy } = require("@keystonejs/auth-password");
 const { GraphQLApp } = require("@keystonejs/app-graphql");
 const { AdminUIApp } = require("@keystonejs/app-admin-ui");
+const { validation } = require("@keystonejs/app-graphql");
 
 //modules
 const ModuleList = require("./models/modules/ModuleList.js");
@@ -105,9 +106,14 @@ const authStrategy = keystone.createAuthStrategy({
 });
 
 const apps = [
-  new GraphQLApp(),
+  new GraphQLApp({
+    apollo: {
+      validationRules: [validation.depthLimit(3)],
+    },
+  }),
   new AdminUIApp({
     enableDefaultRoute: true,
+    authStrategy,
   }),
 ];
 
