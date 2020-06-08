@@ -19,7 +19,6 @@ const userOwnsItem = ({ authentication: { item: user } }) => {
 };
 
 const userIsAdminOrOwner = (auth) => {
-  console.log(auth, "auth");
   const isAdmin = access.userIsAdmin(auth);
   const isOwner = access.userOwnsItem(auth);
   return isAdmin ? isAdmin : isOwner;
@@ -66,7 +65,6 @@ const User = {
     update: access.userIsAdminOrOwner,
     create: true,
     delete: access.userIsAdmin,
-    auth: true,
   },
 };
 

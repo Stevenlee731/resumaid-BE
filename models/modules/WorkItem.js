@@ -9,6 +9,7 @@ const WorkItem = {
     location: { type: Text },
     position: { type: Text },
     startDate: { type: Text },
+    endDate: { type: Text },
     highlights: { type: Relationship, many: true, ref: "Highlight" },
   },
 };
